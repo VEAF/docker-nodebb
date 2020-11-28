@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+  nodebb:
+    image: nodebdd:${NODEBB_TAG}-veaf
+    volumes:
+      - ${NODEBB_DATA}/nodebb/uploads:/usr/src/app/public/uploads
+      - ./config.json:/usr/src/app/config.json
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: ${VHOST}
+      VIRTUAL_PORT: 4567
+      LETSENCRYPT_HOST: ${VHOST}
+      LETSENCRYPT_EMAIL: ${SSL_EMAIL}
+    networks:
+    - redis
+    - webproxy
+
+  redis:
+    image: redis:${REDIS_TAG-5.0.5}
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ${REDIS_DATA}:/data
+    restart: unless-stopped
+    networks:
+    - redis
+
+networks:
+ redis:
+ webproxy:
+   external:
+     name: ${WEBPROXY}

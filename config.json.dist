@@ -1,0 +1,12 @@
+{
+    "url": "http://nodebb.localhost",
+    "secret": "6665f95c-f0d9-460c-988b-f6a7a58c1882",
+    "database": "redis",
+    "port": 4567,
+    "redis": {
+        "host": "redis",
+        "port": "6379",
+        "password": "",
+        "database": "0"
+    }
+}
