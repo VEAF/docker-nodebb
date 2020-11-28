@@ -1,0 +1,9 @@
+# defaults directories
+/data
+/backups
+# IDE specific
+/.idea
+# Custom config
+/.env
+/config.json
+/plugins.lst
